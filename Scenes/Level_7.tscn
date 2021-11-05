@@ -1,0 +1,232 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/World/Wall.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/World/Level2.gd" type="Script" id=4]
+[ext_resource path="res://EndLevel7.gd" type="Script" id=5]
+[ext_resource path="res://PowerClear.tscn" type="PackedScene" id=6]
+[ext_resource path="res://EndLevel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://DeathBarrier.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Flight.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/World/slope.png" type="Texture" id=11]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 32, 8.79883, 32, 32, 32, 32 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "icon.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 0.196078, 0.176471, 0.176471, 1 )
+0/region = Rect2( 0, 0, 50, 50 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "slope.png 1"
+1/texture = ExtResource( 11 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 11, 7, 455, 460 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 32, 32 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 2 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+
+[sub_resource type="Animation" id=4]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionPolygon2D:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 138.8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 138.8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionPolygon2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "finish"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "glitch"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 9, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:gravity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4000, 0, 4000 ]
+}
+
+[node name="World" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 3 )
+cell_size = Vector2( 50, 50 )
+format = 1
+tile_data = PoolIntArray( -458750, 1073741824, 0, -458749, 1073741824, 0, -458748, 1073741824, 0, -458747, 1073741824, 0, -458746, 1073741824, 0, -458745, 1073741824, 0, -458744, 1073741824, 0, -458743, 1073741824, 0, -458742, 1073741824, 0, -458741, 1073741824, 0, -458740, 1073741824, 0, -458739, 1073741824, 0, -393216, 1073741824, 0, -393215, 1073741824, 0, -393202, 1073741824, 0, -393201, 1073741824, 0, -262147, 1073741824, 0, -262146, 1073741824, 0, -262145, 1073741824, 0, -327664, 1073741824, 0, -327663, 1073741824, 0, -327662, 1073741824, 0, -196612, 1073741824, 0, -262142, 1073741824, 0, -262125, 1073741824, 0, -131076, 1073741824, 0, -196607, 1073741824, 0, -196606, 1073741824, 0, -196605, 1073741824, 0, -196589, 1073741824, 0, -65541, 1073741824, 0, -131070, 1073741824, 0, -131063, 1073741824, 0, -131052, 1073741824, 0, -5, 1073741824, 0, -65528, 1073741824, 0, -65527, 1073741824, 0, -65526, 1073741824, 0, -65516, 1073741824, 0, 65531, 1073741824, 0, 9, 1073741824, 0, 17, 1073741824, 0, 20, 1073741824, 0, 131067, 1073741824, 0, 65552, 1073741824, 0, 65553, 1073741824, 0, 65556, 1073741824, 0, 196603, 1073741824, 0, 131089, 1073741824, 0, 131090, 1073741824, 0, 131092, 1073741824, 0, 262139, 1073741824, 0, 196611, 1073741824, 0, 196612, 1073741824, 0, 196613, 1073741824, 0, 196614, 1073741824, 0, 196616, 1073741824, 0, 196617, 1073741824, 0, 196618, 1073741824, 0, 196619, 1073741824, 0, 196628, 1073741824, 0, 327675, 1073741824, 0, 327676, 1073741824, 0, 327677, 1073741824, 0, 327678, 1073741824, 0, 327679, 1073741824, 0, 262144, 1073741824, 0, 262145, 1073741824, 0, 262146, 1073741824, 0, 262147, 1073741824, 0, 262155, 1073741824, 0, 262156, 1073741824, 0, 262157, 1073741824, 0, 262158, 1073741824, 0, 262159, 1073741824, 0, 262160, 1073741824, 0, 262161, 1073741824, 0, 262162, 1073741824, 0, 262163, 1073741824, 0, 262164, 1073741824, 0, 393211, 1073741824, 0, 327685, 1073741824, 0, 327689, 1073741824, 0, 327700, 1073741824, 0, 458747, 1073741824, 0, 393221, 1073741824, 0, 393225, 1073741824, 0, 393236, 1073741824, 0, 524284, 1073741824, 0, 458771, 1073741824, 0, 589820, 1073741824, 0, 524307, 1073741824, 0, 655356, 1073741824, 0, 589843, 1073741824, 0, 720893, 1073741824, 0, 655378, 1073741824, 0, 786430, 0, 0, 786431, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720905, 1073741824, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 1073741824, 0, 720913, 1073741824, 0 )
+
+[node name="EndLevel3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 823.42, 22.692 )
+script = ExtResource( 5 )
+
+[node name="DeathBarrier" parent="." instance=ExtResource( 8 )]
+position = Vector2( -251.288, 616.416 )
+scale = Vector2( 96.2557, 1 )
+offset = Vector2( 10.6391, 0 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 629.386, 478.411 )
+script = ExtResource( 3 )
+
+[node name="Player" type="Polygon2D" parent="KinematicBody2D"]
+color = Color( 0.113725, 0.796078, 0.156863, 1 )
+polygon = PoolVector2Array( -15, 15, 15, 15, 15, -15, -15, -15 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D" groups=[
+"Player",
+]]
+position = Vector2( -1, 0 )
+polygon = PoolVector2Array( -15, 15, 15, 15, 15, -15, -15, -15 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+current = true
+
+[node name="Timer" type="Timer" parent="KinematicBody2D"]
+
+[node name="anim" type="AnimationPlayer" parent="KinematicBody2D"]
+anims/death = SubResource( 4 )
+anims/finish = SubResource( 5 )
+anims/glitch = SubResource( 6 )
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+
+[node name="Flight" parent="." instance=ExtResource( 10 )]
+position = Vector2( 237, 440 )
+
+[node name="Flight2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 237, 440 )
+
+[node name="DeathBarrier2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 398.67, -223.428 )
+scale = Vector2( 24.7795, 1.41642 )
+
+[node name="PowerClear" parent="." instance=ExtResource( 6 )]
+position = Vector2( 430.537, 25.3156 )
+
+[connection signal="timeout" from="KinematicBody2D/Timer" to="KinematicBody2D" method="_on_Timer_timeout"]
